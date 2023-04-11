@@ -2,10 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "privateEndpoints_auto_pe01_name": {
-            "defaultValue": "auto-pe01",
-            "type": "String"
-        },
         "rgName": {
             "type": "string"
         },
@@ -189,7 +185,7 @@
                         "type": "String"
                     },
                     "automationAccounts_pb001_auto_name": {
-                        "defaultValue": "pb001-auto",
+                        "defaultValue": "[parameters('automationAccountName')]",
                         "type": "String"
                     },
                     "virtualNetworks_vnet01_externalid": {
