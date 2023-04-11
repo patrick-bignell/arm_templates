@@ -173,6 +173,10 @@
                         "defaultValue": "pbsq1-pe01",
                         "type": "String"
                     },
+                    "workspaces_pb001_la_name": {
+                        "defaultValue": "pb001-la",
+                        "type": "String"
+                    },
                     "servers_pb001_sql_name": {
                         "defaultValue": "pb001-sql",
                         "type": "String"
@@ -2043,6 +2047,18 @@
                                         "ingestionAccessMode": "PrivateOnly"
                                     }
                                 }
+                        },
+                        {
+                            "type": "microsoft.insights/privatelinkscopes/scopedresources",
+                            "apiVersion": "2021-07-01-preview",
+                            "name": "[concat(parameters('privatelinkscopes_pbaoe_laworkspace_scope_name'), '/scoped-pb001-la-80148269-a41b-4747-ab83-9bb7a9eba03a')]",
+                            "dependsOn": [
+                                "[resourceId('microsoft.insights/privatelinkscopes', parameters('privatelinkscopes_pbaoe_laworkspace_scope_name'))]",
+                                "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_pb001_la_name'))]"
+                            ],
+                            "properties": {
+                                "linkedResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_pb001_la_name'))]"
+                            }
                         },
                         {
                             "type": "Microsoft.Network/networkInterfaces",
