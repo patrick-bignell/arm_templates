@@ -2051,7 +2051,7 @@
                         {
                             "type": "microsoft.insights/privatelinkscopes/scopedresources",
                             "apiVersion": "2021-07-01-preview",
-                            "name": "[concat(parameters('privatelinkscopes_pbaoe_laworkspace_scope_name'), '/scoped-pb001-la-80148269-a41b-4747-ab83-9bb7a9eba03a')]",
+                            "name": "[concat(parameters('privatelinkscopes_pbaoe_laworkspace_scope_name'), '/scoped')]",
                             "dependsOn": [
                                 "[resourceId('microsoft.insights/privatelinkscopes', parameters('privatelinkscopes_pbaoe_laworkspace_scope_name'))]",
                                 "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_pb001_la_name'))]"
