@@ -109,6 +109,7 @@
                     "scope": "inner"
                 },
                 "parameters": {
+
                     "projectLocation": {
                         "value": "[parameters('projectLocation')]"
                     },
@@ -168,6 +169,14 @@
                     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                     "contentVersion": "1.0.0.0",
                     "parameters": {
+                    "privateEndpoints_pbsq1_pe01_name": {
+                        "defaultValue": "pbsq1-pe01",
+                        "type": "String"
+                    },
+                    "servers_pb001_sql_name": {
+                        "defaultValue": "pb001-sql",
+                        "type": "String"
+                    },
                     "privateEndpoints_auto_pe01_name": {
                         "defaultValue": "auto-pe01",
                         "type": "String"
@@ -2482,7 +2491,6 @@
                                         "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
                                         "properties": {
                                             "provisioningState": "Succeeded",
-                                            "privateIPAddress": "10.0.0.18",
                                             "privateIPAllocationMethod": "Dynamic",
                                             "subnet": {
                                                 "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
@@ -2507,6 +2515,43 @@
                                 "nicType": "Standard"
                             }
                         },
+                        {
+                                "type": "Microsoft.Network/privateEndpoints",
+                                "apiVersion": "2022-09-01",
+                                "name": "[parameters('privateEndpoints_pbsq1_pe01_name')]",
+                                "location": "westus",
+                                "dependsOn": [
+                                    "[resourceId('Microsoft.Sql/servers', parameters('servers_pb001_sql_name'))]"
+                                ],
+                                "properties": {
+                                    "privateLinkServiceConnections": [
+                                        {
+                                            "name": "[parameters('privateEndpoints_pbsq1_pe01_name')]",
+                                            "id": "[concat(resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_pbsq1_pe01_name')), concat('/privateLinkServiceConnections/', parameters('privateEndpoints_pbsq1_pe01_name')))]",
+                                            "properties": {
+                                                "privateLinkServiceId": "[resourceId('Microsoft.Sql/servers', parameters('servers_pb001_sql_name'))]",
+                                                "groupIds": [
+                                                    "sqlServer"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "manualPrivateLinkServiceConnections": [],
+                                    "customNetworkInterfaceName": "[concat(parameters('privateEndpoints_pbsq1_pe01_name'), '-nic')]",
+                                    "subnet": {
+                                        "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
+                                    },
+                                    "ipConfigurations": [],
+                                    "customDnsConfigs": [
+                                        {
+                                            "fqdn": "pb001-sql.database.windows.net",
+                                            "ipAddresses": [
+                                                "10.0.0.18"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
                         // Azure SQL Database
                         {
                             "type": "Microsoft.Sql/servers/databases",
@@ -2533,6 +2578,7 @@
                                 "storageAccountType": "GRS"
                             }
                         },
+
                         // Azure SQL backup retention policy
                         {
                             "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
