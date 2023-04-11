@@ -2521,7 +2521,7 @@
                                 "name": "[parameters('privateEndpoints_pbsq1_pe01_name')]",
                                 "location": "westus",
                                 "dependsOn": [
-                                    "[resourceId('Microsoft.Sql/servers', parameters('servers_pb001_sql_name'))]"
+                                    "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
                                 ],
                                 "properties": {
                                     "privateLinkServiceConnections": [
@@ -2529,7 +2529,7 @@
                                             "name": "[parameters('privateEndpoints_pbsq1_pe01_name')]",
                                             "id": "[concat(resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_pbsq1_pe01_name')), concat('/privateLinkServiceConnections/', parameters('privateEndpoints_pbsq1_pe01_name')))]",
                                             "properties": {
-                                                "privateLinkServiceId": "[resourceId('Microsoft.Sql/servers', parameters('servers_pb001_sql_name'))]",
+                                                "privateLinkServiceId": "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]",
                                                 "groupIds": [
                                                     "sqlServer"
                                                 ]
