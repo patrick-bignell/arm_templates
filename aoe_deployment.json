@@ -174,7 +174,7 @@
                         "type": "String"
                     },
                     "workspaces_pb001_la_name": {
-                        "defaultValue": "pb001-la",
+                        "defaultValue": "pb002-la",
                         "type": "String"
                     },
                     "servers_pb001_sql_name": {
