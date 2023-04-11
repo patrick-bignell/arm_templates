@@ -2477,45 +2477,6 @@
                             ]
                         },
                         {
-                            "type": "Microsoft.Network/networkInterfaces",
-                            "apiVersion": "2022-09-01",
-                            "name": "[parameters('networkInterfaces_pbsq1_pe01_nic_name')]",
-                            "location": "westus",
-                            "kind": "Regular",
-                            "properties": {
-                                "ipConfigurations": [
-                                    {
-                                        "name": "privateEndpointIpConfig.909bd05b-25fa-4004-8f75-e34d6d3f4b7b",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_pbsq1_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.909bd05b-25fa-4004-8f75-e34d6d3f4b7b')]",
-                                        "etag": "W/\"31c0dadd-dcd1-4ebe-87aa-e66120977b2b\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": true,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "sqlServer",
-                                                "requiredMemberName": "sqlServer",
-                                                "fqdns": [
-                                                    "pb001-sql.database.windows.net"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                ],
-                                "dnsSettings": {
-                                    "dnsServers": []
-                                },
-                                "enableIPForwarding": false,
-                                "disableTcpStateTracking": false,
-                                "nicType": "Standard"
-                            }
-                        },
-                        {
                                 "type": "Microsoft.Network/privateEndpoints",
                                 "apiVersion": "2022-09-01",
                                 "name": "[parameters('privateEndpoints_pbsq1_pe01_name')]",
