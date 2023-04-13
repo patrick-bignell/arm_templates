@@ -173,6 +173,10 @@
                         "defaultValue": "pbsq1-pe01",
                         "type": "String"
                     },
+                    "storageAccounts_pb002sa_name": {
+                        "defaultValue": "pb002sa",
+                        "type": "String"
+                    },
                     "workspaces_pb001_la_name": {
                         "defaultValue": "pb002-la",
                         "type": "String"
