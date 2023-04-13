@@ -2381,15 +2381,7 @@
                                 "subnet": {
                                     "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
                                 },
-                                "ipConfigurations": [],
-                                "customDnsConfigs": [
-                                    {
-                                        "fqdn": "c8bc2af4-a43a-41ba-a28d-0dbe88fc7e70.webhook.wus.azure-automation.net",
-                                        "ipAddresses": [
-                                            "10.0.0.4"
-                                        ]
-                                    }
-                                ]
+                                "ipConfigurations": []
                             }
                         },
                         {
@@ -2423,65 +2415,51 @@
                                 "subnet": {
                                     "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
                                 },
-                                "ipConfigurations": [],
-                                "customDnsConfigs": [
-                                    {
-                                        "fqdn": "c8bc2af4-a43a-41ba-a28d-0dbe88fc7e70.agentsvc.wus.azure-automation.net",
-                                        "ipAddresses": [
-                                            "10.0.0.5"
-                                        ]
-                                    },
-                                    {
-                                        "fqdn": "c8bc2af4-a43a-41ba-a28d-0dbe88fc7e70.jrds.wus.azure-automation.net",
-                                        "ipAddresses": [
-                                            "10.0.0.6"
-                                        ]
-                                    }
-                                ]
+                                "ipConfigurations": []
                             }
                         },
-                        {
-                            "type": "Microsoft.Automation/automationAccounts/privateEndpointConnections",
-                            "apiVersion": "2020-01-13-preview",
-                            "name": "[concat(parameters('automationAccounts_pb001_auto_name'), '/c8bc2af4-a43a-41ba-a28d-0dbe88fc7e70-6627df65-d1da-460d-a3c1-3048557b69ed')]",
-                            "dependsOn": [
-                                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_pb001_auto_name'))]",
-                                "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe01_name'))]"
-                            ],
-                            "properties": {
-                                "privateEndpoint": {
-                                    "id": "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe01_name'))]"
-                                },
-                                "privateLinkServiceConnectionState": {
-                                    "status": "Approved",
-                                    "description": "Auto-approved"
-                                },
-                                "groupIds": [
-                                    "Webhook"
-                                ]
-                            }
-                        },
-                        {
-                            "type": "Microsoft.Automation/automationAccounts/privateEndpointConnections",
-                            "apiVersion": "2020-01-13-preview",
-                            "name": "[concat(parameters('automationAccounts_pb001_auto_name'), '/c8bc2af4-a43a-41ba-a28d-0dbe88fc7e70-bd8ee75f-ae01-46ac-aed4-44c55cb5e01c')]",
-                            "dependsOn": [
-                                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_pb001_auto_name'))]",
-                                "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe02_name'))]"
-                            ],
-                            "properties": {
-                                "privateEndpoint": {
-                                    "id": "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe02_name'))]"
-                                },
-                                "privateLinkServiceConnectionState": {
-                                    "status": "Approved",
-                                    "description": "Auto-approved"
-                                },
-                                "groupIds": [
-                                    "DSCAndHybridWorker"
-                                ]
-                            }
-                        },
+                        // // {
+                        // //     "type": "Microsoft.Automation/automationAccounts/privateEndpointConnections",
+                        // //     "apiVersion": "2020-01-13-preview",
+                        // //     "name": "[concat(parameters('automationAccounts_pb001_auto_name'), '/c8bc2af4-a43a-41ba-a28d-0dbe88fc7e70-6627df65-d1da-460d-a3c1-3048557b69ed')]",
+                        // //     "dependsOn": [
+                        // //         "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_pb001_auto_name'))]",
+                        // //         "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe01_name'))]"
+                        // //     ],
+                        // //     "properties": {
+                        // //         "privateEndpoint": {
+                        // //             "id": "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe01_name'))]"
+                        // //         },
+                        // //         "privateLinkServiceConnectionState": {
+                        // //             "status": "Approved",
+                        // //             "description": "Auto-approved"
+                        // //         },
+                        // //         "groupIds": [
+                        // //             "Webhook"
+                        // //         ]
+                        // //     }
+                        // // },
+                        // // {
+                        // //     "type": "Microsoft.Automation/automationAccounts/privateEndpointConnections",
+                        // //     "apiVersion": "2020-01-13-preview",
+                        // //     "name": "[concat(parameters('automationAccounts_pb001_auto_name'), '/c8bc2af4-a43a-41ba-a28d-0dbe88fc7e70-bd8ee75f-ae01-46ac-aed4-44c55cb5e01c')]",
+                        // //     "dependsOn": [
+                        // //         "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccounts_pb001_auto_name'))]",
+                        // //         "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe02_name'))]"
+                        // //     ],
+                        // //     "properties": {
+                        // //         "privateEndpoint": {
+                        // //             "id": "[resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_auto_pe02_name'))]"
+                        // //         },
+                        // //         "privateLinkServiceConnectionState": {
+                        // //             "status": "Approved",
+                        // //             "description": "Auto-approved"
+                        // //         },
+                        // //         "groupIds": [
+                        // //             "DSCAndHybridWorker"
+                        // //         ]
+                        // //     }
+                        // // },
                         // Automation Modules (Az.Account)
                         {
                             "comments": "provision the Az.Accounts module first since others are dependent on it",
