@@ -181,6 +181,10 @@
                         "defaultValue": "pb001-sql",
                         "type": "String"
                     },
+                    "privateEndpoints_storage_pe01_name": {
+                        "defaultValue": "storage-pe01",
+                        "type": "String"
+                    },
                     "privateEndpoints_auto_pe01_name": {
                         "defaultValue": "auto-pe01",
                         "type": "String"
@@ -2035,290 +2039,6 @@
                                 "retentionInDays": "[parameters('logAnalyticsRetentionDays')]"
                             }
                         },
-                        {
-                                "type": "microsoft.insights/privatelinkscopes",
-                                "apiVersion": "2021-07-01-preview",
-                                "name": "[parameters('privatelinkscopes_pbaoe_laworkspace_scope_name')]",
-                                "location": "global",
-                                "properties": {
-                                    "accessModeSettings": {
-                                        "exclusions": [],
-                                        "queryAccessMode": "PrivateOnly",
-                                        "ingestionAccessMode": "PrivateOnly"
-                                    }
-                                }
-                        },
-                        {
-                            "type": "microsoft.insights/privatelinkscopes/scopedresources",
-                            "apiVersion": "2021-07-01-preview",
-                            "name": "[concat(parameters('privatelinkscopes_pbaoe_laworkspace_scope_name'), '/scoped')]",
-                            "dependsOn": [
-                                "[resourceId('microsoft.insights/privatelinkscopes', parameters('privatelinkscopes_pbaoe_laworkspace_scope_name'))]",
-                                "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_pb001_la_name'))]"
-                            ],
-                            "properties": {
-                                "linkedResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_pb001_la_name'))]"
-                            }
-                        },
-                        {
-                            "type": "Microsoft.Network/networkInterfaces",
-                            "apiVersion": "2022-09-01",
-                            "name": "[parameters('networkInterfaces_monitor_scope_pe01_nic_name')]",
-                            "location": "westus",
-                            "kind": "Regular",
-                            "properties": {
-                                "ipConfigurations": [
-                                    {
-                                        "name": "privateEndpointIpConfig.20019ec2-a0a6-4c34-95c7-b5f2a4150c76",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.20019ec2-a0a6-4c34-95c7-b5f2a4150c76')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": true,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "api",
-                                                "fqdns": [
-                                                    "api.monitor.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.d38f6677-ad03-4189-90af-597250cdbb26",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.d38f6677-ad03-4189-90af-597250cdbb26')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "global.in.ai",
-                                                "fqdns": [
-                                                    "global.in.ai.monitor.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.08ecc8d6-d0a8-4f26-af97-5fe6c79ed359",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.08ecc8d6-d0a8-4f26-af97-5fe6c79ed359')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "profiler",
-                                                "fqdns": [
-                                                    "profiler.monitor.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.3a7095c3-aed3-4602-af96-74581031dd16",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.3a7095c3-aed3-4602-af96-74581031dd16')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "live",
-                                                "fqdns": [
-                                                    "live.monitor.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.d54cb1f5-3487-4af2-b0b8-3cd0bf7951a5",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.d54cb1f5-3487-4af2-b0b8-3cd0bf7951a5')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "diagservicesquery",
-                                                "fqdns": [
-                                                    "diagservices-query.monitor.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.19360bc3-cd10-4eb5-8419-faf35e7e5048",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.19360bc3-cd10-4eb5-8419-faf35e7e5048')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "snapshot",
-                                                "fqdns": [
-                                                    "snapshot.monitor.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.0daa7b1d-1e3b-4206-ba3a-8449fa3dbcdd",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.0daa7b1d-1e3b-4206-ba3a-8449fa3dbcdd')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "agentsolutionpackstore",
-                                                "fqdns": [
-                                                    "scadvisorcontentpl.blob.core.windows.net"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.843a28d7-dc75-442a-b11e-2906ca9fd77f",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.843a28d7-dc75-442a-b11e-2906ca9fd77f')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "dce-global",
-                                                "fqdns": [
-                                                    "global.handler.control.monitor.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.8a21246f-741b-4646-b155-279473e5a0f1",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.8a21246f-741b-4646-b155-279473e5a0f1')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "oms-westus",
-                                                "fqdns": [
-                                                    "d28bae88-44ef-4152-a016-5e2a740048ae.oms.opinsights.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.e0bcb002-81c2-4e81-a01b-20805a8577bf",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.e0bcb002-81c2-4e81-a01b-20805a8577bf')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "ods-westus",
-                                                "fqdns": [
-                                                    "d28bae88-44ef-4152-a016-5e2a740048ae.ods.opinsights.azure.com"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "privateEndpointIpConfig.93eec7f3-d520-44a4-9bc6-9fb22809dbcb",
-                                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_monitor_scope_pe01_nic_name')), '/ipConfigurations/privateEndpointIpConfig.93eec7f3-d520-44a4-9bc6-9fb22809dbcb')]",
-                                        "etag": "W/\"047aa5c9-be19-4fea-b1ed-b4dda412f149\"",
-                                        "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
-                                        "properties": {
-                                            "provisioningState": "Succeeded",
-                                            "privateIPAllocationMethod": "Dynamic",
-                                            "subnet": {
-                                                "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
-                                            },
-                                            "primary": false,
-                                            "privateIPAddressVersion": "IPv4",
-                                            "privateLinkConnectionProperties": {
-                                                "groupId": "azuremonitor",
-                                                "requiredMemberName": "agent-westus",
-                                                "fqdns": [
-                                                    "d28bae88-44ef-4152-a016-5e2a740048ae.agentsvc.azure-automation.net"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                ],
-                                "dnsSettings": {
-                                    "dnsServers": []
-                                },
-                                "enableIPForwarding": false,
-                                "disableTcpStateTracking": false,
-                                "nicType": "Standard"
-                            }
-                        },
   
                         // Storage Account
                         {
@@ -2353,6 +2073,48 @@
                                     "keySource": "Microsoft.Storage"
                                 },
                                 "accessTier": "Cool"
+                            }
+                        },
+                        {
+                            "type": "Microsoft.Network/privateEndpoints",
+                            "apiVersion": "2022-09-01",
+                            "name": "[parameters('privateEndpoints_storage_pe01_name')]",
+                            "location": "westus",
+                            "dependsOn": [
+                                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_pb002sa_name'))]"
+                            ],
+                            "properties": {
+                                "privateLinkServiceConnections": [
+                                    {
+                                        "name": "[parameters('privateEndpoints_storage_pe01_name')]",
+                                        "id": "[concat(resourceId('Microsoft.Network/privateEndpoints', parameters('privateEndpoints_storage_pe01_name')), concat('/privateLinkServiceConnections/', parameters('privateEndpoints_storage_pe01_name')))]",
+                                        "properties": {
+                                            "privateLinkServiceId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_pb002sa_name'))]",
+                                            "groupIds": [
+                                                "blob"
+                                            ],
+                                            "privateLinkServiceConnectionState": {
+                                                "status": "Approved",
+                                                "description": "Auto-Approved",
+                                                "actionsRequired": "None"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "manualPrivateLinkServiceConnections": [],
+                                "customNetworkInterfaceName": "[concat(parameters('privateEndpoints_storage_pe01_name'), '-nic')]",
+                                "subnet": {
+                                    "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
+                                },
+                                "ipConfigurations": [],
+                                "customDnsConfigs": [
+                                    {
+                                        "fqdn": "pb002sa.blob.core.windows.net",
+                                        "ipAddresses": [
+                                            "10.0.0.33"
+                                        ]
+                                    }
+                                ]
                             }
                         },
                         // Storage Account Blob Services
