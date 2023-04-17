@@ -170,11 +170,11 @@
                     "contentVersion": "1.0.0.0",
                     "parameters": {
                         "privateEndpoints_pbsq1_pe01_name": {
-                            "defaultValue": "pbsq1-pe01",
+                            "defaultValue": "[concat(parameters('sqlServerName'),'-pe01')]",
                             "type": "String"
                         },
                         "privateEndpoints_storage_pe01_name": {
-                            "defaultValue": "storage-pe01",
+                            "defaultValue": "[concat(parameters('storageAccountName'),'-pe01')]",
                             "type": "String"
                         },
                         "privateEndpoints_auto_pe01_name": {
@@ -182,15 +182,15 @@
                             "type": "String"
                         },
                         "privateEndpoints_auto_pe02_name": {
-                            "defaultValue": "auto-pe02",
+                            "defaultValue": "[concat(parameters('automationAccountName'),'-pe02')]",
                             "type": "String"
                         },
                         "automationAccounts_pb001_auto_name": {
-                            "defaultValue": "[parameters('automationAccountName')]",
+                            "defaultValue": "[concat(parameters('automationAccountName'),'-pe01')]",
                             "type": "String"
                         },
                         "virtualNetworks_vnet01_externalid": {
-                            "defaultValue": "/subscriptions/43a5eb95-e79e-4567-90cf-94850a468504/resourceGroups/vnet_rg/providers/Microsoft.Network/virtualNetworks/vnet01",
+                            "defaultValue": "/subscriptions/4f6da12d-e57a-4c33-a5df-1b06d02921cb/resourceGroups/RG-ENMAX-TOL-UW1-001-P/providers/Microsoft.Network/virtualNetworks/ENMAX-TOL-UW1-VNT-001-P",
                             "type": "String"
                         },
                         "projectLocation": {
@@ -2084,7 +2084,7 @@
                                 "manualPrivateLinkServiceConnections": [],
                                 "customNetworkInterfaceName": "[concat(parameters('privateEndpoints_storage_pe01_name'), '-nic')]",
                                 "subnet": {
-                                    "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
+                                    "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/ENMAX-TOL-UW1-VNT-001-P-AOE')]"
                                 },
                                 "ipConfigurations": [],
                                 "customDnsConfigs": [
@@ -2258,7 +2258,7 @@
                                     "manualPrivateLinkServiceConnections": [],
                                     "customNetworkInterfaceName": "[concat(parameters('privateEndpoints_pbsq1_pe01_name'), '-nic')]",
                                     "subnet": {
-                                        "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
+                                        "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/ENMAX-TOL-UW1-VNT-001-P-AOE')]"
                                     },
                                     "ipConfigurations": [],
                                     "customDnsConfigs": [
@@ -2355,7 +2355,7 @@
                                 "manualPrivateLinkServiceConnections": [],
                                 "customNetworkInterfaceName": "[concat(parameters('privateEndpoints_auto_pe01_name'), '-nic')]",
                                 "subnet": {
-                                    "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
+                                    "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/ENMAX-TOL-UW1-VNT-001-P-AOE')]"
                                 },
                                 "ipConfigurations": []
                             }
@@ -2389,7 +2389,7 @@
                                 "manualPrivateLinkServiceConnections": [],
                                 "customNetworkInterfaceName": "[concat(parameters('privateEndpoints_auto_pe02_name'), '-nic')]",
                                 "subnet": {
-                                    "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/default')]"
+                                    "id": "[concat(parameters('virtualNetworks_vnet01_externalid'), '/subnets/ENMAX-TOL-UW1-VNT-001-P-AOE')]"
                                 },
                                 "ipConfigurations": []
                             }
