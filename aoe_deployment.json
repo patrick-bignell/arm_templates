@@ -169,54 +169,30 @@
                     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                     "contentVersion": "1.0.0.0",
                     "parameters": {
-                    "privateEndpoints_pbsq1_pe01_name": {
-                        "defaultValue": "pbsq1-pe01",
-                        "type": "String"
-                    },
-                    "storageAccounts_pb002sa_name": {
-                        "defaultValue": "pb002sa",
-                        "type": "String"
-                    },
-                    "workspaces_pb001_la_name": {
-                        "defaultValue": "pb002-la",
-                        "type": "String"
-                    },
-                    "servers_pb001_sql_name": {
-                        "defaultValue": "pb001-sql",
-                        "type": "String"
-                    },
-                    "privateEndpoints_storage_pe01_name": {
-                        "defaultValue": "storage-pe01",
-                        "type": "String"
-                    },
-                    "privateEndpoints_auto_pe01_name": {
-                        "defaultValue": "auto-pe01",
-                        "type": "String"
-                    },
-                    "privateEndpoints_auto_pe02_name": {
-                        "defaultValue": "auto-pe02",
-                        "type": "String"
-                    },
-                    "networkInterfaces_pbsq1_pe01_nic_name": {
-                        "defaultValue": "pbsq1-pe01-nic",
-                        "type": "String"
-                    },
-                    "privatelinkscopes_pbaoe_laworkspace_scope_name": {
-                        "defaultValue": "pbaoe-laworkspace-scope",
-                        "type": "String"
-                    },
-                    "automationAccounts_pb001_auto_name": {
-                        "defaultValue": "[parameters('automationAccountName')]",
-                        "type": "String"
-                    },
-                    "virtualNetworks_vnet01_externalid": {
-                        "defaultValue": "/subscriptions/43a5eb95-e79e-4567-90cf-94850a468504/resourceGroups/vnet_rg/providers/Microsoft.Network/virtualNetworks/vnet01",
-                        "type": "String"
-                    },
-                    "networkInterfaces_monitor_scope_pe01_nic_name": {
-                        "defaultValue": "monitor-scope-pe01-nic",
-                        "type": "String"
-                    },
+                        "privateEndpoints_pbsq1_pe01_name": {
+                            "defaultValue": "pbsq1-pe01",
+                            "type": "String"
+                        },
+                        "privateEndpoints_storage_pe01_name": {
+                            "defaultValue": "storage-pe01",
+                            "type": "String"
+                        },
+                        "privateEndpoints_auto_pe01_name": {
+                            "defaultValue": "[concat(parameters('automationAccountName'),'-pe01')]",
+                            "type": "String"
+                        },
+                        "privateEndpoints_auto_pe02_name": {
+                            "defaultValue": "auto-pe02",
+                            "type": "String"
+                        },
+                        "automationAccounts_pb001_auto_name": {
+                            "defaultValue": "[parameters('automationAccountName')]",
+                            "type": "String"
+                        },
+                        "virtualNetworks_vnet01_externalid": {
+                            "defaultValue": "/subscriptions/43a5eb95-e79e-4567-90cf-94850a468504/resourceGroups/vnet_rg/providers/Microsoft.Network/virtualNetworks/vnet01",
+                            "type": "String"
+                        },
                         "projectLocation": {
                             "type": "String"
                         },
