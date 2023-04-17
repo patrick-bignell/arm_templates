@@ -2321,6 +2321,7 @@
                                 "type": "SystemAssigned"
                             },
                             "properties": {
+                                "publicNetworkAccess": false,
                                 "sku": {
                                     "name": "Basic"
                                 }
