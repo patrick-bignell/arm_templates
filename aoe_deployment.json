@@ -5,10 +5,6 @@
         "rgName": {
             "type": "string"
         },
-        "contributorRoleAssignmentGuid": {
-            "type": "string",
-            "defaultValue": "[guid(parameters('rgName'))]"
-        },
         "projectLocation": {
             "type": "String"
         },
@@ -153,9 +149,6 @@
                     },
                     "baseTime": {
                         "value": "[parameters('baseTime')]"
-                    },
-                    "contributorRoleAssignmentGuid": {
-                        "value": "[parameters('contributorRoleAssignmentGuid')]"
                     }
                 },
                 "template": {
@@ -235,9 +228,6 @@
                             "type": "String"
                         },
                         "baseTime": {
-                            "type": "string"
-                        },
-                        "contributorRoleAssignmentGuid": {
                             "type": "string"
                         },
                         "argDiskExportJobId": {
