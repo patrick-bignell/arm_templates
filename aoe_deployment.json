@@ -2940,20 +2940,20 @@
                                     "name": "[variables('cleanUpOlderRecommendationsRunbookName')]"
                                 }
                             }
-                        },
-                        {
-                            "type": "Microsoft.Authorization/roleAssignments",
-                            "apiVersion": "2018-09-01-preview",
-                            "name": "[parameters('contributorRoleAssignmentGuid')]",
-                            "dependsOn": [
-                                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-                            ],
-                            "properties": {
-                                "roleDefinitionId": "[variables('roleContributor')]",
-                                "principalId": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName')), '2019-06-01', 'Full').identity.principalId]",
-                                "principalType": "ServicePrincipal"
-                            }
                         }
+                        // {
+                        //     "type": "Microsoft.Authorization/roleAssignments",
+                        //     "apiVersion": "2018-09-01-preview",
+                        //     "name": "[parameters('contributorRoleAssignmentGuid')]",
+                        //     "dependsOn": [
+                        //         "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+                        //     ],
+                        //     "properties": {
+                        //         "roleDefinitionId": "[variables('roleContributor')]",
+                        //         "principalId": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName')), '2019-06-01', 'Full').identity.principalId]",
+                        //         "principalType": "ServicePrincipal"
+                        //     }
+                        // }
                     ],
                     "outputs": {
                         "automationPrincipalId": {
@@ -2963,20 +2963,20 @@
                     }
                 }
             }
-        },
-        {
-            "type": "Microsoft.Authorization/roleAssignments",
-            "apiVersion": "2018-09-01-preview",
-            "name": "[parameters('readerRoleAssignmentGuid')]",
-            "dependsOn": [
-                "resourcesDeployment"
-            ],
-            "properties": {
-                "roleDefinitionId": "[variables('roleReader')]",
-                "principalId": "[reference('resourcesDeployment').outputs.automationPrincipalId.value]",
-                "principalType": "ServicePrincipal"
-            }
         }
+        // {
+        //     "type": "Microsoft.Authorization/roleAssignments",
+        //     "apiVersion": "2018-09-01-preview",
+        //     "name": "[parameters('readerRoleAssignmentGuid')]",
+        //     "dependsOn": [
+        //         "resourcesDeployment"
+        //     ],
+        //     "properties": {
+        //         "roleDefinitionId": "[variables('roleReader')]",
+        //         "principalId": "[reference('resourcesDeployment').outputs.automationPrincipalId.value]",
+        //         "principalType": "ServicePrincipal"
+        //     }
+        // }
     ],
     "outputs": {
         "automationPrincipalId": {
