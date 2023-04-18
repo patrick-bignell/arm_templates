@@ -5,10 +5,6 @@
         "rgName": {
             "type": "string"
         },
-        "readerRoleAssignmentGuid": {
-            "type": "string",
-            "defaultValue": "[guid(subscription().subscriptionId, parameters('rgName'))]"
-        },
         "contributorRoleAssignmentGuid": {
             "type": "string",
             "defaultValue": "[guid(parameters('rgName'))]"
@@ -2001,8 +1997,7 @@
                                 "description": "The lookback period (in days) for analyzing Storage Account growth",
                                 "value": 30
                             }
-                        ],
-                        "roleContributor": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]"
+                        ]
                     },
                     "resources": [
                         // Log Analytics Workspace
