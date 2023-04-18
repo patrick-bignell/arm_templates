@@ -2954,13 +2954,13 @@
                         //         "principalType": "ServicePrincipal"
                         //     }
                         // }
-                    ],
-                    "outputs": {
-                        "automationPrincipalId": {
-                            "type": "string",
-                            "value": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName')), '2019-06-01', 'Full').identity.principalId]"
-                        }
-                    }
+                    ]
+                    // "outputs": {
+                    //     "automationPrincipalId": {
+                    //         "type": "string",
+                    //         "value": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName')), '2019-06-01', 'Full').identity.principalId]"
+                    //     }
+                    // }
                 }
             }
         }
@@ -2977,11 +2977,11 @@
         //         "principalType": "ServicePrincipal"
         //     }
         // }
-    ],
-    "outputs": {
-        "automationPrincipalId": {
-            "type": "string",
-            "value": "[reference('resourcesDeployment').outputs.automationPrincipalId.value]"
-        }
-    }
+    ]
+    // "outputs": {
+    //     "automationPrincipalId": {
+    //         "type": "string",
+    //         "value": "[reference('resourcesDeployment').outputs.automationPrincipalId.value]"
+    //     }
+    // }
 }
