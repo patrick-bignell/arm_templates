@@ -82,7 +82,21 @@
             "apiVersion": "2021-04-01",
             "location": "[parameters('projectLocation')]",
             "dependsOn": [],
-            "tags": {}
+            "tags": {
+                "DataClassifiation": "value01",
+                "ApplicationName":"Azure Optimization Engine",
+                "Role":"Cost Savings",
+                "Description":"Azure Optimization Engine",
+                "OperationsTeam":"Infrastructure Automation and Analytics",
+                "Project":"AOE",
+                "Environment":"Production",
+                "BusinessCriticality":"Bronze",
+                "BusinessOwner":"Ian Wardrop",
+                "FinancialBU":"ENMAX",
+                "TechnicalOwner":"Patrick Bignell",
+                "DisasterRecovery":"N/A",
+                "CostAllocationCode":"33220"
+            }
         },
         {
             "name": "resourcesDeployment",
