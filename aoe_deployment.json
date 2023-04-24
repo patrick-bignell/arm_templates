@@ -83,9 +83,9 @@
             "location": "[parameters('projectLocation')]",
             "dependsOn": [],
             "tags": {
-                "DataClassifiation": "value01",
-                "ApplicationName":"Azure Optimization Engine",
-                "Role":"Cost Savings",
+                "DataClassification": "value01",*
+                "ApplicationName":"Azure Optimization Engine",*
+                "Role":"Cost Savings",*
                 "Description":"Azure Optimization Engine",
                 "OperationsTeam":"Infrastructure Automation and Analytics",
                 "Project":"AOE",
