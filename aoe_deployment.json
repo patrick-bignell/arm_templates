@@ -5,14 +5,6 @@
         "rgName": {
             "type": "string"
         },
-        "readerRoleAssignmentGuid": {
-            "type": "string",
-            "defaultValue": "[guid(subscription().subscriptionId, parameters('rgName'))]"
-        },
-        "contributorRoleAssignmentGuid": {
-            "type": "string",
-            "defaultValue": "[guid(parameters('rgName'))]"
-        },
         "projectLocation": {
             "type": "String"
         },
@@ -83,9 +75,6 @@
         }
     },
     "functions": [],
-    "variables": {
-        "roleReader": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]"
-    },
     "resources": [
         {
             "name": "[parameters('rgName')]",
@@ -93,21 +82,7 @@
             "apiVersion": "2021-04-01",
             "location": "[parameters('projectLocation')]",
             "dependsOn": [],
-            "tags": {
-                "DataClassifiation": "value01",
-                "ApplicationName":"Azure Optimization Engine",
-                "Role":"Cost Savings",
-                "Description":"Azure Optimization Engine",
-                "OperationsTeam":"Infrastructure Automation and Analytics",
-                "Project":"AOE",
-                "Environment":"Production",
-                "BusinessCriticality":"Bronze",
-                "BusinessOwner":"Ian Wardrop",
-                "FinancialBU":"ENMAX",
-                "TechnicalOwner":"Patrick Bignell",
-                "DisasterRecovery":"N/A",
-                "CostAllocationCode":"33220"
-            }
+            "tags": {}
         },
         {
             "name": "resourcesDeployment",
@@ -174,9 +149,6 @@
                     },
                     "baseTime": {
                         "value": "[parameters('baseTime')]"
-                    },
-                    "contributorRoleAssignmentGuid": {
-                        "value": "[parameters('contributorRoleAssignmentGuid')]"
                     }
                 },
                 "template": {
@@ -256,9 +228,6 @@
                             "type": "String"
                         },
                         "baseTime": {
-                            "type": "string"
-                        },
-                        "contributorRoleAssignmentGuid": {
                             "type": "string"
                         },
                         "argDiskExportJobId": {
@@ -2015,8 +1984,7 @@
                                 "description": "The lookback period (in days) for analyzing Storage Account growth",
                                 "value": 30
                             }
-                        ],
-                        "roleContributor": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]"
+                        ]
                     },
                     "resources": [
                         // Log Analytics Workspace
@@ -2954,42 +2922,10 @@
                                     "name": "[variables('cleanUpOlderRecommendationsRunbookName')]"
                                 }
                             }
-                        },
-                        {
-                            "type": "Microsoft.Authorization/roleAssignments",
-                            "apiVersion": "2018-09-01-preview",
-                            "name": "[parameters('contributorRoleAssignmentGuid')]",
-                            "dependsOn": [
-                                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-                            ],
-                            "properties": {
-                                "roleDefinitionId": "[variables('roleContributor')]",
-                                "principalId": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName')), '2019-06-01', 'Full').identity.principalId]",
-                                "principalType": "ServicePrincipal"
-                            }
                         }
                     ]
                 }
             }
-        },
-        {
-            "type": "Microsoft.Authorization/roleAssignments",
-            "apiVersion": "2018-09-01-preview",
-            "name": "[parameters('readerRoleAssignmentGuid')]",
-            "dependsOn": [
-                "resourcesDeployment"
-            ],
-            "properties": {
-                "roleDefinitionId": "[variables('roleReader')]",
-                "principalId": "[reference('resourcesDeployment').outputs.automationPrincipalId.value]",
-                "principalType": "ServicePrincipal"
-            }
         }
-    ],
-    "outputs": {
-        "automationPrincipalId": {
-            "type": "string",
-            "value": "[reference('resourcesDeployment').outputs.automationPrincipalId.value]"
-        }
-    }
+    ]
 }
