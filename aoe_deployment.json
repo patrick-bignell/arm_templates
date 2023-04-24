@@ -10,7 +10,7 @@
         },
         "_artifactsLocation": {
             "type": "string",
-            "defaultValue": "[deployment().properties.templateLink.uri]",
+            "defaultValue": "https://raw.githubusercontent.com/helderpinto/AzureOptimizationEngine/master/",
             "metadata": {
                 "description": "The base URI where artifacts required by this template are located"
             }
